@@ -1,0 +1,145 @@
+
+Timestamps:
+00:00 - preparations
+00:18 - Step 1 Gathering your audio data
+01:41 - Step 2 Setting Up Your Colab Script
+02:50 - Step 3 Training Your Model
+17:32 - Step 4 Synthesizing Your Audio
+
+
+
+Links:
+####
+PPP quick guide
+https://docs.google.com/document/d/1PDkSrKKiHzzpUTKzBldZeKngvjeBUjyTtGCOv2GWwa0
+PPP Main Guide
+https://docs.google.com/document/d/1y1pfS0LCrwbbvxdn3ZksH25BKaf0LaO13uYppxIQnac
+
+(So-Vits-SVC 4.0 training program)
+https://colab.research.google.com/drive/1laRNiMSgSw_SxSnuti8oWIuC--RHzAGp
+
+(So-Vits-SVC 4.0 synthesis github code (3.0 voice models will not be compatible))
+https://github.com/effusiveperiscope/so-vits-svc/tree/eff-4.0
+#########
+(this is old v3.0 Colab that is presented in this video, I recommend using the above newer 4.0)
+https://colab.research.google.com/drive/1rCUOOVG7-XQlVZuWRAj5IpGrMM8t07pE?usp=sharing#scrollTo=-hEFFTCfZf57
+#########
+
+
+Video Transcript:
+#
+Training an So-Vits-SVC voice Model.
+
+So you are interested in training a voice for the So-Vits-SVC.
+
+This tutorial will guide you through the process step-by-step. 
+Before we begin, make sure you have access to a Google account, 
+as we'll be using Google Colab for this project.
+ 
+#
+Step 1: Gathering Your Audio Data
+
+First, you'll need to gather the audio files you want to use for your model.
+With this training script you don't need a text transcriptions of the audio files;
+All you need are clean, and high quality audio files of the character's voice. 
+Remember the old saying, garbage in - garbage out. 
+Ideally, you should have at least 15 minutes of audio, 
+but you may get away with as little as 5 minutes.
+
+Create a folder with the name of the character you want to turn into a model, 
+and place all of the audio files inside.
+Make sure the folder is zipped, and upload it to your Google Drive in a new folder called "dataset".
+
+#
+Step 2: Setting Up Your Colab Script
+
+Now it's time to set up the Colab script for training your model. 
+Open the script and type in the name of the folder you created in the previous step in the text cells.
+Run the cells from the top to bottom.
+
+During the training process, Colab may prompt you to replace all the audio clips.
+Type "a" for all and press enter to confirm.
+
+#
+Step 3: Training Your Model
+
+Once you reach the training cell, the Colab script will display a tensorboard, 
+which will update with new audio clips as the model learns after ever thousands step loops. 
+
+The script is designed to save the model every thousand steps to your Google Drive, 
+so you can resume training from the newest model in case of a script crash or connection problem.
+
+I will highly recommended to babysit the training process 
+as after every thousand loops it will save the "G" and "D" models in your Google Drive, 
+as you will need to remove the older models by hand to ensure that your google drive will not run out of space.
+
+Also keep in mind that it may take several thousand steps for the model to produce decent-quality audio, so be patient.
+
+
+After the model has been trained to your satisfaction, check if the latest versions of the "G" and "D" models are in your Google Drive. 
+If not, edit the last cell with the Colab directory to the trained model and download them to your Google Drive.
+
+Once all of that is done, download the "G" and "D" models and config json to your models folder inside the So-Vits-SVC directory.
+
+#
+Step 4: Synthesizing Your Audio
+
+Now that your model is trained, it's time to synthesize the audio. 
+Start the synthesis program by navigating to the correct directory folder and starting the Python user interface.
+
+cd (folder directory)
+conda activate so_svc
+python inference_gui2.py
+
+Choose the trained model, and the file you want to convert, 
+and adjust the pitch setting until the output audio sounds like the character's voice.
+
+Congratulations, you've successfully trained an audio conversion model voice!
+
+
+
+------
+------
+------
+Extras:
+------
+------
+------
+
+
+But wait, there is something else I would like to share with you.
+
+You may be interested in using your audio dataset on different training code, 
+however those will definitively require text transcript.
+
+Typically, extracting a transcript can be a time-consuming task, involving typing it manually or digging through game files or scrapping subtitles.
+
+Fortunately, there are tools available that can automate the process, such as this automatic WAV transcript Python tool developed by me.
+This tool uses the VOSK transcription model to transcribe audio files automatically, saving you time and effort.
+
+While this model does not include punctuation, question marks, full-stops, or other symbols, 
+it is still quite effective at generating accurate transcriptions.
+This tool can be a valuable asset to anyone working with audio transcription, making it a great addition to your toolkit.
+
+https://github.com/AmoArt/Automatic-Wavs-Transcriber-VOSK
+
+#
+
+Simply download the zip from github, install those two module requirements and run the code.
+
+pip install vosk
+pip install pyaudio
+
+And run the VOSK_Transcriber_offline_v2.py file.
+Just remember to adjust the 'audioFrameHz' segment inside the "VOSK_Transcriber_offline_v2.py" file to whatever Hz your audio files are using.
+
+Music:
+Gothic The Chronicles Of Myrtana Archolos - 04 - Peaceful Land
+Gothic The Chronicles Of Myrtana Archolos - 15 - Vista Points
+Gothic The Chronicles Of Myrtana Archolos - 16 - Misty Valley
+Gothic The Chronicles Of Myrtana Archolos - 20 - I Can See the Island
+Gothic The Chronicles Of Myrtana Archolos - 23 - A Tale of a Witch
+Gothic The Chronicles Of Myrtana Archolos - 34 - Myrtana Dream
+BackTraxx Music Libraries - 05 - Acoustic Environments - 05
+BackTraxx Music Libraries - 05 - Acoustic Environments - 27
+
