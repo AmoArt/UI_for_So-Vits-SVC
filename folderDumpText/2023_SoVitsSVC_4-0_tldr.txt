@@ -1,0 +1,55 @@
+========== https://github.com/effusiveperiscope/so-vits-svc/tree/eff-4.0
+========== quick tldr instruction on installing the so-vits-svc 4.0 with miniconda
+conda activate base
+conda env remove -n so_svc_4
+conda clean --all
+conda create --name so_svc_4
+
+conda activate so_svc_4
+
+cd (so-vits-svc-eff-4.0 repo)
+
+==Download ContentVec model: checkpoint_best_legacy_500.pt
+==https://ibm.ent.box.com/s/z1wgl1stco8ffooyatzdwsqn2psd9lrr
+==Place under hubert.
+
+==Download pretrained models G_0.pth and D_0.pth
+==https://huggingface.co/innnky/sovits_pretrained/resolve/main/sovits4/G_0.pth
+==https://huggingface.co/innnky/sovits_pretrained/resolve/main/sovits4/D_0.pth
+==Place under logs/44k.
+
+===The below one is requirements to use for the linux
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu113
+
+===The below one is requirements to use for the windows
+pip install https://download.pytorch.org/whl/cu116/torch-1.12.0%2Bcu116-cp39-cp39-win_amd64.whl
+pip install -r requirements_win.txt --extra-index-url https://download.pytorch.org/whl/cu113
+
+pip install setuptools==57.5.0
+pip install praat-parselmouth librosa tensorboard --extra-index-url https://download.pytorch.org/whl/cu113
+===
+
+===install this in your C drive and link directory to Enviriment variables PATH
+==https://breakfastquay.com/rubberband/
+===
+
+pip install PyQt5
+pip install pyrubberband
+
+pip show pysoundfile
+pip uninstall pysoundfile
+
+pip install soundfile==0.12.1 --force-reinstall
+
+pip install requests
+
+pip install fairseq
+
+python inference_gui2.py
+
+-------
+once above is done and working, all you need is those three lines in the conda terminal
+
+cd (so-vits-svc-eff-4.0 repo)
+conda activate so_svc_4
+python inference_gui2.py
