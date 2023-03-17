@@ -1,0 +1,43 @@
+>>>restart pc
+conda activate base
+conda env remove -n colab0
+conda clean --all
+conda create --name colab0 python=3.10
+##########################################
+conda activate colab0
+
+#cd (directory were you want to keep the files)
+
+
+
+conda install pytorch=1.12.0 torchvision=0.13.0 torchaudio=0.12.0 cuda-toolkit=11.4 -c pytorch -c nvidia
+
+
+
+
+
+#test if the cuda toolk kit installed correcly pytorch 
+
+conda list -f pytorch
+python -c "import torch; print(torch.cuda.is_available())"
+python -c "import torch; print(torch.version.cuda)"
+python -c "import torch; print(torch.zeros(1).cuda())"
+
+
+#####################in colab, pick "connect to local runtime", follow instuctions linked there
+
+pip install jupyter_http_over_ws
+
+jupyter serverextension enable --py jupyter_http_over_ws
+
+jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888 --NotebookApp.port_retries=0
+
+
+
+copy the "http://localhost:8888/?token=" link back into the colab
+
+
+
+
+
+
