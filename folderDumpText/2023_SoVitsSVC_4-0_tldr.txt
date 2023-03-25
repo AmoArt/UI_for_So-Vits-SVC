@@ -45,6 +45,12 @@ pip install requests
 
 pip install fairseq
 
+pip install onnx onnxsim onnxoptimizer
+pip install pygame
+pip install tensorflow
+pip install fairseq
+pip install crepe
+
 python inference_gui2.py
 
 -------
